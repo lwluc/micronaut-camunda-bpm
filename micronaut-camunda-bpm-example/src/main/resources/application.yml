@@ -3,9 +3,9 @@ micronaut:
     name: micronaut-camunda-example
 camunda:
   bpm:
-    admin-user:
-      id: admin
-      password: admin
+#    admin-user:
+#      id: admin
+#      password: admin
     generic-properties:
       properties:
         initialize-telemetry: true

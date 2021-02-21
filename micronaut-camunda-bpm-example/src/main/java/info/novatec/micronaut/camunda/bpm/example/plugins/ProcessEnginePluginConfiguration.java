@@ -1,5 +1,7 @@
-package info.novatec.micronaut.camunda.bpm.example;
+package info.novatec.micronaut.camunda.bpm.example.plugins;
 
+import info.novatec.micronaut.camunda.bpm.example.plugins.abtract.AbstractPlugin;
+import info.novatec.micronaut.camunda.bpm.example.plugins.iface.InterfacePlugin;
 import info.novatec.micronaut.camunda.bpm.feature.DefaultProcessEngineConfigurationCustomizer;
 import info.novatec.micronaut.camunda.bpm.feature.MnProcessEngineConfiguration;
 import info.novatec.micronaut.camunda.bpm.feature.ProcessEngineConfigurationCustomizer;
@@ -12,12 +14,14 @@ import java.util.List;
 
 @Singleton
 @Replaces(DefaultProcessEngineConfigurationCustomizer.class)
-public class LdapConfiguration implements ProcessEngineConfigurationCustomizer {
+public class ProcessEnginePluginConfiguration implements ProcessEngineConfigurationCustomizer {
 
     @Override
     public void customize(MnProcessEngineConfiguration processEngineConfiguration) {
         List<ProcessEnginePlugin> plugins = processEngineConfiguration.getProcessEnginePlugins();
         plugins.add(ldapIdentityProvider());
+        plugins.add(new AbstractPlugin());
+        plugins.add(new InterfacePlugin());
         processEngineConfiguration.setProcessEnginePlugins(plugins);
     }
 
